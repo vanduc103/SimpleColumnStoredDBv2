@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int main(int argc, char* argv[]) {
+int main1(int argc, char* argv[]) {
     try {
         // Create the Socket
         ClientSocket c_socket("localhost", 30000);

@@ -8,6 +8,12 @@ How to build and run
   + Install boost library:
     + Download boost_1_61_0.tar.bz2: http://www.boost.org/users/history/version_1_61_0.html
     + Extract (or copy) boost folder to /usr/local/: tar --bzip2 -xf /path/to/boost_1_61_0.tar.bz2
+  + Install SQl parser library:
+    + Download the latest release: https://github.com/hyrise/sql-parser/releases
+    + Compile the library make to create libsqlparser.so
+    + Run '$ make install' to copy the library to /usr/local/lib/
+    + Add /usr/local/lib to $LD_LIBRARY_PATH
+    + Include the SQLParser.h from src/ and link the library in the project (change Makefile to the correct src/ path)
 - Build server: 
   + $ make clean
   + $ make
@@ -15,6 +21,7 @@ How to build and run
   + $ cd client
   + $ make
 - Run (maybe use the execution file included):
+  + Remember to install libsqlparser.so and added /usr/local/lib to $LD_LIBRARY_PATH first
   + Run the server:
     + $ ./serverApp
   + Run the client:

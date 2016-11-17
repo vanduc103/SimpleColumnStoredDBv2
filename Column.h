@@ -16,6 +16,7 @@
 #include <map>
 #include <stdexcept>
 #include <algorithm>
+#include <cstdint>
 #include "ColumnBase.h"
 #include "Dictionary.h"
 #include "PackedArray.h"
@@ -308,8 +309,21 @@ public:
 		}
 	}
 
+	void setCSN(size_t rid, bool setMaximum = true) {
+		try {
+			data_column data = dataColumn->at(rid);
+			if (setMaximum)
+				data.csn = UINT64_MAX;
+			dataColumn->at(rid) = data;
+		} catch (out_of_range& e) {
+			// nothing
+		}
+	}
+
 	// VERSION SPACE
 	void addVersionVecValue(T& value, uint64_t csn, size_t rid) {
+		// set maximum csn so that another transaction cannot update
+		this->setCSN(rid, true);
 		// add to delta space and version vector (start from last dictionary position)
 		bool sorted = dictionary->getSorted();
 		deltaSpace->addNewElement(value, versionVecValue, sorted, false);
@@ -388,12 +402,8 @@ public:
 							size_t versionVecValueIdx = versionData.encodedValueIdx;
 							size_t dictIdx = this->versionVecValue->at(
 									versionVecValueIdx);
-							// lookup in Dictionary or Delta space
-							T* a = this->getDictionary()->lookup(dictIdx);
-							if (a == NULL) {
-								a = this->deltaSpace->lookup(
-										dictIdx - dictionary->size());
-							}
+							// lookup in Delta space
+							T* a = deltaSpace->lookup(dictIdx);
 							if (a != NULL) {
 								outputs.push_back(*a);
 							}
@@ -426,7 +436,7 @@ public:
 			data_column dataAtRid = dataColumn->at(rid);
 			// update vecValue and data at rid
 			updateVecValueAt(rid, newEncodedValue);
-			dataAtRid.csn = lastestVersion.csn;
+			dataAtRid.csn = lastestVersion.csn;	// lastest update csn
 			dataAtRid.encodedValueIdx = rid;	// index to vecValue
 			dataAtRid.versionFlag = true;
 			dataColumn->at(rid) = dataAtRid;

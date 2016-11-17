@@ -13,9 +13,9 @@
 using namespace std;
 
 
-void restartWaitingTransaction(int interval, Transaction* transaction, Table* table, GarbageCollector* garbage)
+void restartWaitingTransaction(int interval, Transaction* transaction, Table* table, GarbageCollector* garbage, ServerSocket* server)
 {
-	std::thread([interval, transaction, table, garbage]()
+	std::thread([interval, transaction, table, garbage, server]()
 	{
 		while (true) {
 			std::this_thread::sleep_for(
@@ -29,8 +29,13 @@ void restartWaitingTransaction(int interval, Transaction* transaction, Table* ta
 				ServerSocket* client = tx.client;
 				// execute command and return to client
 				string result = updateCommand(client, table, transaction, tx.command, garbage, txIdx);
-				if (client != NULL && result != "WAITING") {
-					(*client) << result;
+				if (client != NULL) {
+					try {
+						server->accept(*client);
+						(*client) << result;
+					} catch(SocketException& e) {
+						std::cout<< "Exception caught: " << e.description() << std::endl;
+					}
 				}
 			}
 		}
@@ -51,10 +56,7 @@ int main(int argc, char* argv[]) {
 	garbage->setTransaction(transaction);
 	garbage->setTable(ordersTable);
 	// run each 1000 ms
-	garbage->start(10000);
-
-	// restart waiting transaction as thread
-	restartWaitingTransaction(10000, transaction, ordersTable, garbage);
+	garbage->start(30000);
 
     try {
         // Create the Socket
@@ -65,6 +67,8 @@ int main(int argc, char* argv[]) {
         while(true) {
             ServerSocket client;
             server.accept(client);
+            // restart waiting transaction as thread
+			restartWaitingTransaction(10000, transaction, ordersTable, garbage, &server);
 
             try {
                 while(true) {
@@ -106,8 +110,7 @@ int main(int argc, char* argv[]) {
 						result = "NO VALID COMMAND FOUND !";
 					}
 					// send result to client
-					if (result != "WAITING")
-						client << result;
+					client << result;
                     /* CODE  END  */
                 }
             } catch(SocketException&) {}

@@ -298,29 +298,34 @@ string insertCommand(Table* table, Transaction* transaction, vector<string> comm
 	// get insert value from command and execute insert
 	transaction->startTx(txIdx);
 	uint64_t csn = transaction->getTimestampAsCSN();
+	size_t numOfRow = 0;
 	if (command.size() >= 2) {
 		o_orderkey = stoi(command[2-1]);
 		Column<int>* col = (Column<int>*) table->getColumnByName("o_orderkey");
 		col->insertDataVecValue(o_orderkey, csn);
+		numOfRow = col->numOfRows();
 	}
 	if (command.size() >= 3) {
 		o_orderstatus = command[3-1];
 		Column<string>* col = (Column<string>*) table->getColumnByName("o_orderstatus");
 		col->insertDataVecValue(o_orderstatus, csn);
+		numOfRow = col->numOfRows();
 	}
 	if (command.size() >= 4) {
 		o_totalprice = stoi(command[4-1]);
 		Column<int>* col = (Column<int>*) table->getColumnByName("o_totalprice");
 		col->insertDataVecValue(o_totalprice, csn);
+		numOfRow = col->numOfRows();
 	}
 	if (command.size() >= 5) {
 		o_comment = command[5-1];
 		Column<string>* col = (Column<string>*) table->getColumnByName("o_comment");
 		col->insertDataVecValue(o_comment, csn);
+		numOfRow = col->numOfRows();
 	}
 	// commit Transaction
 	transaction->commitTx(txIdx, csn);
-	return "INSERTED 1 row !";
+	return "INSERTED 1 row ! Number of rows is: " + numOfRow;
 }
 
 // SCAN
@@ -341,12 +346,12 @@ string scanCommand(Table* table, Transaction* transaction, vector<string> comman
 	// select with filter value 1
 	vector<bool>* q_resultRid = new vector<bool>();
 	ColumnBase* colBase = table->getColumnByName(column1);
-	if (colBase->getType() == ColumnBase::intType) {
+	if (colBase != NULL && colBase->getType() == ColumnBase::intType) {
 		Column<int>* col = (Column<int>*) colBase;
 		int searchValue = stoi(filterValue1);
 		col->selection(searchValue, ColumnBase::sToOp(operator1), q_resultRid);
 	}
-	else if (colBase->getType() == ColumnBase::charType) {
+	else if (colBase != NULL && colBase->getType() == ColumnBase::charType) {
 		Column<string>* col = (Column<string>*) colBase;
 		string searchValue = filterValue1;
 		col->selection(searchValue, ColumnBase::sToOp(operator1), q_resultRid);
@@ -359,12 +364,12 @@ string scanCommand(Table* table, Transaction* transaction, vector<string> comman
 		// select with filter value 2
 		ColumnBase* colBase = table->getColumnByName(column2);
 		bool initResultRid = false;
-		if (colBase->getType() == ColumnBase::intType) {
+		if (colBase != NULL && colBase->getType() == ColumnBase::intType) {
 			Column<int>* col = (Column<int>*) colBase;
 			int searchValue = stoi(filterValue2);
 			col->selection(searchValue, ColumnBase::sToOp(operator2), q_resultRid, initResultRid);
 		}
-		else if (colBase->getType() == ColumnBase::charType) {
+		else if (colBase != NULL && colBase->getType() == ColumnBase::charType) {
 			Column<string>* col = (Column<string>*) colBase;
 			string searchValue = filterValue2;
 			col->selection(searchValue, ColumnBase::sToOp(operator2), q_resultRid, initResultRid);
