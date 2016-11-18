@@ -27,7 +27,7 @@ public:
 		vector<size_t> vecRid;
 		vector<string> command;
 	};
-	static vector<transaction>* vecTransaction;
+	static vector<transaction*>* vecTransaction;
 	static vector<size_t>* vecActiveTransaction;
 	static vector<size_t>* vecWaitingTransaction;
 
@@ -46,11 +46,15 @@ public:
 	void commitTx(size_t txIdx, uint64_t csn);
 	void abortTx(size_t txIdx);
 	vector<size_t> listActiveTransaction();
-	Transaction::transaction getTransaction(size_t txIdx);
+	//Transaction::transaction* getTransaction(size_t txIdx);
 	void addToWaitingList(size_t txIdx);
 	vector<size_t> getWaitingList();
 	void setClient(size_t txIdx, ServerSocket* client);
 	void setCommand(size_t txIdx, vector<string> command);
+	ServerSocket* getClient(size_t txIdx);
+	vector<string> getCommand(size_t txIdx);
+	Transaction::TRANSACTION_STATUS getStatus(size_t txIdx);
+	vector<size_t> getVecRid(size_t txIdx);
 };
 
 } /* namespace std */

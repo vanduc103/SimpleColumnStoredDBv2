@@ -309,11 +309,10 @@ public:
 		}
 	}
 
-	void setCSN(size_t rid, bool setMaximum = true) {
+	void setCSN(size_t rid) {
 		try {
 			data_column data = dataColumn->at(rid);
-			if (setMaximum)
-				data.csn = UINT64_MAX;
+			data.csn = UINT64_MAX;
 			dataColumn->at(rid) = data;
 		} catch (out_of_range& e) {
 			// nothing
@@ -323,7 +322,7 @@ public:
 	// VERSION SPACE
 	void addVersionVecValue(T& value, uint64_t csn, size_t rid) {
 		// set maximum csn so that another transaction cannot update
-		this->setCSN(rid, true);
+		this->setCSN(rid);
 		// add to delta space and version vector (start from last dictionary position)
 		bool sorted = dictionary->getSorted();
 		deltaSpace->addNewElement(value, versionVecValue, sorted, false);
@@ -354,9 +353,10 @@ public:
 			// create a new entry for rid on Hash table
 			(*hashtable)[rid] = versionColumn->size() - 1;
 		}
-		// update version_flag on DATA space
+		// update version_flag & new csn on DATA space
 		data_column dataValue = dataColumn->at(rid);
 		dataValue.versionFlag = true;
+		dataValue.csn = csn + 200;
 		dataColumn->at(rid) = dataValue;
 	}
 

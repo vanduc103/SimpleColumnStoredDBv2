@@ -23,7 +23,7 @@
 #include "Column.h"
 #include "ColumnBase.h"
 #include "Table.h"
-#include "SQLParser.h"
+#include "sql-parser/SQLParser.h"
 #include "Util.h"
 #include "App.h"
 
@@ -217,7 +217,7 @@ string updateCommand(ServerSocket* client, Table* table, Transaction* transactio
 		transaction->setCommand(txIdx, command);
 	}
 	transaction->startTx(txIdx);
-	uint64_t csn = transaction->getStartTimestamp(txIdx);
+	uint64_t startTs = transaction->getStartTimestamp(txIdx);
 	// get update value from command and execute update
 	if (command.size() >= 3) {
 		o_orderkey = stoi(command[3-1]);
@@ -226,9 +226,11 @@ string updateCommand(ServerSocket* client, Table* table, Transaction* transactio
 			if (col->numOfRows() <= rid) {
 				return "ERROR: row id excess number of rows !";
 			}
+			//cout << "csn = " << col->getCSN(rid) << endl;
+			//cout << "startTs = " << startTs << endl;
 			// check column's CSN with tx start time stamp
-			if (col->getCSN(rid) <= csn)
-				col->addVersionVecValue(o_orderkey, csn, rid);
+			if (col->getCSN(rid) <= startTs)
+				col->addVersionVecValue(o_orderkey, startTs, rid);
 			else
 				transaction->addToWaitingList(txIdx);
 		}
@@ -240,8 +242,8 @@ string updateCommand(ServerSocket* client, Table* table, Transaction* transactio
 			return "ERROR: row id excess number of rows !";
 		}
 		// check column's CSN with tx start time stamp
-		if (col->getCSN(rid) <= csn)
-			col->addVersionVecValue(o_orderstatus, csn, rid);
+		if (col->getCSN(rid) <= startTs)
+			col->addVersionVecValue(o_orderstatus, startTs, rid);
 		else
 			transaction->addToWaitingList(txIdx);
 	}
@@ -252,8 +254,8 @@ string updateCommand(ServerSocket* client, Table* table, Transaction* transactio
 			return "ERROR: row id excess number of rows !";
 		}
 		// check column's CSN with tx start time stamp
-		if (col->getCSN(rid) <= csn)
-			col->addVersionVecValue(o_totalprice, csn, rid);
+		if (col->getCSN(rid) <= startTs)
+			col->addVersionVecValue(o_totalprice, startTs, rid);
 		else
 			transaction->addToWaitingList(txIdx);
 	}
@@ -264,21 +266,23 @@ string updateCommand(ServerSocket* client, Table* table, Transaction* transactio
 			return "ERROR: row id excess number of rows !";
 		}
 		// check column's CSN with tx start time stamp
-		if (col->getCSN(rid) <= csn)
-			col->addVersionVecValue(o_comment, csn, rid);
+		if (col->getCSN(rid) <= startTs)
+			col->addVersionVecValue(o_comment, startTs, rid);
 		else
 			transaction->addToWaitingList(txIdx);
 	}
 	// commit Transaction (if not in waiting list)
-	if (transaction->getTransaction(txIdx).status != Transaction::TRANSACTION_STATUS::WAITING) {
-		transaction->commitTx(txIdx, csn);
+	if (transaction->getStatus(txIdx) != Transaction::TRANSACTION_STATUS::WAITING) {
+		transaction->commitTx(txIdx, startTs);
 		// add to Garbage Collector
 		vector<size_t> updateRids;
 		updateRids.push_back(rid);
 		garbage->updateRecentlyUpdateRids(updateRids);
 
+		cout << "Updated 1 row with rid = " + to_string(rid + 1) << endl;
 		return "Updated 1 row with rid = " + to_string(rid + 1);
 	}
+	cout << "WAITING" << endl;
 	return "WAITING";
 }
 
@@ -325,7 +329,9 @@ string insertCommand(Table* table, Transaction* transaction, vector<string> comm
 	}
 	// commit Transaction
 	transaction->commitTx(txIdx, csn);
-	return "INSERTED 1 row ! Number of rows is: " + numOfRow;
+	stringstream result;
+	result << "INSERTED 1 row ! Number of rows is: " << to_string(numOfRow);
+	return result.str();
 }
 
 // SCAN

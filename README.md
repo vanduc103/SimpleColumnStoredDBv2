@@ -13,7 +13,7 @@ How to build and run
     + Compile the library make to create libsqlparser.so
     + Run '$ make install' to copy the library to /usr/local/lib/
     + Add /usr/local/lib to $LD_LIBRARY_PATH
-    + Include the SQLParser.h from src/ and link the library in the project (change Makefile to the correct src/ path)
+    + Makefile already has link to sql-parser source
 - Build server: 
   + $ make clean
   + $ make

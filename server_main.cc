@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <thread>
 #include <map>
 #include "App.h"
@@ -13,9 +14,9 @@
 using namespace std;
 
 
-void restartWaitingTransaction(int interval, Transaction* transaction, Table* table, GarbageCollector* garbage, ServerSocket* server)
+void restartWaitingTransaction(int interval, Transaction* transaction, Table* table, GarbageCollector* garbage)
 {
-	std::thread([interval, transaction, table, garbage, server]()
+	std::thread([interval, transaction, table, garbage]()
 	{
 		while (true) {
 			std::this_thread::sleep_for(
@@ -24,18 +25,15 @@ void restartWaitingTransaction(int interval, Transaction* transaction, Table* ta
 			vector<size_t> txWaitingList = transaction->getWaitingList();
 			for (size_t i = 0; i < txWaitingList.size(); i++) {
 				cout << "waiting transaction #" << i << endl;
-				Transaction::transaction tx = transaction->getTransaction(txWaitingList.at(i));
-				size_t txIdx = tx.txnId;
-				ServerSocket* client = tx.client;
+				size_t txIdx = txWaitingList.at(i);
+				ServerSocket* client = transaction->getClient(txIdx);
 				// execute command and return to client
-				string result = updateCommand(client, table, transaction, tx.command, garbage, txIdx);
-				if (client != NULL) {
-					try {
-						server->accept(*client);
+				string result = updateCommand(client, table, transaction, transaction->getCommand(txIdx), garbage, txIdx);
+				try {
+					if (result != "WAITING")
 						(*client) << result;
-					} catch(SocketException& e) {
-						std::cout<< "Exception caught: " << e.description() << std::endl;
-					}
+				} catch(SocketException& e) {
+					std::cout<< "Exception caught: " << e.description() << std::endl;
 				}
 			}
 		}
@@ -56,25 +54,27 @@ int main(int argc, char* argv[]) {
 	garbage->setTransaction(transaction);
 	garbage->setTable(ordersTable);
 	// run each 1000 ms
-	garbage->start(30000);
+	garbage->start(10000);
 
     try {
         // Create the Socket
     	int port = 30000;
         ServerSocket server(port);
         std::cout << ">>>> Server is listening at port: " << port << std::endl;
+        std::ofstream log ("server.log");
 
         while(true) {
             ServerSocket client;
             server.accept(client);
             // restart waiting transaction as thread
-			restartWaitingTransaction(10000, transaction, ordersTable, garbage, &server);
+			restartWaitingTransaction(10000, transaction, ordersTable, garbage);
 
             try {
                 while(true) {
                     std::string data;
                     client >> data;
                     std::cout << "[Received]\t" << data << std::endl;
+                    log << "\n[Received]\t" << data << std::endl;
 
                     /* CODE BEGIN */
                     // split data into command
@@ -110,7 +110,10 @@ int main(int argc, char* argv[]) {
 						result = "NO VALID COMMAND FOUND !";
 					}
 					// send result to client
-					client << result;
+					if (result != "WAITING")
+						client << result;
+					log << "Result:\n" << result << endl;
+					log.flush();
                     /* CODE  END  */
                 }
             } catch(SocketException&) {}

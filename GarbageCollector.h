@@ -68,8 +68,8 @@ public:
 					col->updateVersionSpace2DataSpace(rid);
 					// check active Transaction to delete old versions
 					for (size_t k = 0; k < vecActiveTx.size(); k++) {
-						Transaction::transaction tx = transaction->getTransaction(vecActiveTx.at(k));
-						vector<size_t> vecRid = tx.vecRid;
+						size_t txIdx = vecActiveTx.at(k);
+						vector<size_t> vecRid = transaction->getVecRid(txIdx);
 						bool beUsing = false;
 						for (size_t m = 0; m < vecRid.size(); m++) {
 							if (vecRid.at(m) == rid) {
@@ -77,7 +77,7 @@ public:
 							}
 						}
 						if (beUsing) {
-							col->removeOldVersion(rid, tx.startTs);
+							col->removeOldVersion(rid, transaction->getStartTimestamp(txIdx));
 						}
 					}
 				}
@@ -92,8 +92,8 @@ public:
 					col->updateVersionSpace2DataSpace(rid);
 					// check active Transaction to delete old versions
 					for (size_t k = 0; k < vecActiveTx.size(); k++) {
-						Transaction::transaction tx = transaction->getTransaction(vecActiveTx.at(k));
-						vector<size_t> vecRid = tx.vecRid;
+						size_t txIdx = vecActiveTx.at(k);
+						vector<size_t> vecRid = transaction->getVecRid(txIdx);
 						bool beUsing = false;
 						for (size_t m = 0; m < vecRid.size(); m++) {
 							if (vecRid.at(m) == rid) {
@@ -101,12 +101,13 @@ public:
 							}
 						}
 						if (beUsing) {
-							col->removeOldVersion(rid, tx.startTs);
+							col->removeOldVersion(rid, transaction->getStartTimestamp(txIdx));
 						}
 					}
 				}
 			}
 		}
+		cout << "Garbage finished !" << endl;
 		// clear recently updated rid
 		recentlyUpdatedRids.clear();
 	}

@@ -1,56 +1,56 @@
 
-[Sending]	UPDATE|2|8888
-[Response]
+[Received]	UPDATE|2|8888
+Result:
 Updated 1 row with rid = 2
 
-[Sending]	SCAN|8888|o_orderkey|=
-[Response]
+[Received]	SCAN|8888|o_orderkey|=
+Result:
 o_orderkey, o_orderstatus, o_totalprice, o_comment, 
 No result found !
 Query time: 0.000372 seconds 
 
 
-[Sending]	SCAN|8888|o_orderkey|=
-[Response]
+[Received]	SCAN|8888|o_orderkey|=
+Result:
 o_orderkey, o_orderstatus, o_totalprice, o_comment, 
 No result found !
 Query time: 0.000356 seconds 
 
 
-[Sending]	UPDATE|2|8888
-[Response]
+[Received]	UPDATE|2|8888
+Result:
 Updated 1 row with rid = 2
 
-[Sending]	SCAN|8888|o_orderkey|=
-[Response]
+[Received]	SCAN|8888|o_orderkey|=
+Result:
 o_orderkey, o_orderstatus, o_totalprice, o_comment, 
 8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
 Showing 1/1 results !
 Query time: 0.000395 seconds 
 
 
-[Sending]	SCAN|8888|o_orderkey|=
-[Response]
+[Received]	SCAN|8888|o_orderkey|=
+Result:
 o_orderkey, o_orderstatus, o_totalprice, o_comment, 
 8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
 Showing 1/1 results !
 Query time: 0.00037 seconds 
 
 
-[Sending]	UPDATE|2|8888
-[Response]
+[Received]	UPDATE|2|8888
+Result:
 Updated 1 row with rid = 2
 
-[Sending]	SCAN|8888|o_orderkey|=
-[Response]
+[Received]	SCAN|8888|o_orderkey|=
+Result:
 o_orderkey, o_orderstatus, o_totalprice, o_comment, 
 8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
 Showing 1/1 results !
 Query time: 0.000388 seconds 
 
 
-[Sending]	SCAN|8888|o_orderkey|=
-[Response]
+[Received]	SCAN|8888|o_orderkey|=
+Result:
 o_orderkey, o_orderstatus, o_totalprice, o_comment, 
 8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
 Showing 1/1 results !
