@@ -9,7 +9,7 @@
 
 #include "ColumnBase.h"
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <algorithm>
 
 using namespace std;
@@ -17,11 +17,6 @@ using namespace std;
 template<class T>
 class Dictionary {
 private:
-	struct classcomp {
-	  bool operator() (const T lhs, const T rhs) const
-	  {return lhs<rhs;}
-	};
-
 	struct invertedIndex {
 		string word;
 		char position;	 // position on text
@@ -38,14 +33,14 @@ private:
 	};
 
 	vector<T>* items;
-	bool sorted = true;
-	std::map<T, size_t, classcomp>* sMap;
+	bool sorted = false;
+	std::unordered_map<T, size_t>* sMap;
 	vector<T>* bulkVecValue;
 	vector<invertedIndex>* vecIndexLevel0;
 public:
 	Dictionary() {
 		items = new vector<T>();
-		sMap = new map<T, size_t, classcomp>();
+		sMap = new unordered_map<T, size_t>();
 		bulkVecValue = new vector<T>();
 		vecIndexLevel0 = new vector<invertedIndex>();
 	}
@@ -66,6 +61,7 @@ public:
 	size_t size();
 	void print(int row);
 	void buildInvertedIndex();
+	void sort();
 
 	vector<T>* getBulkVecValue() {
 		return bulkVecValue;

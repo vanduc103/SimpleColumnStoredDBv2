@@ -66,20 +66,17 @@ public:
 				Column<int>* col = (Column<int>*) colBase;
 				if (col->isBulkInsert())
 					col->bulkBuildVecVector(csn);
-				col->getDictionary()->clearTemp();
 				col->bitPackingVecValue();
+				col->getDictionary()->clearTemp();
 			}
 			else if (colBase->getType() == ColumnBase::charType ||
 					 colBase->getType() == ColumnBase::varcharType) {
 				Column<string>* col = (Column<string>*) colBase;
-				if (col->isBulkInsert()) {
-					col->bulkBuildVecVector(csn);
-				}
 				if (col->isCreateInvertedIndex()) {
 					col->createInvertedIndex();
 				}
-				col->getDictionary()->clearTemp();
 				col->bitPackingVecValue();
+				col->getDictionary()->clearTemp();
 			}
 		}
 	}

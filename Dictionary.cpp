@@ -237,14 +237,6 @@ void Dictionary<T>::searchWithNoSorted(T& value, ColumnBase::OP_TYPE opType, vec
 					// sort result
 					std::sort(result.begin(), result.end());
 				}
-				/*for (size_t i = 0; i < vecInvertedIndex->size(); i++) {
-					invertedIndex idx = vecInvertedIndex->at(i);
-					if (equalFunc(idx.word, value)) {
-						result.insert(result.end(), idx.location.begin(), idx.location.end());
-						// sort result
-						std::sort(result.begin(), result.end());
-					}
-				}*/
 				break;
 			}
 			}
@@ -254,9 +246,11 @@ void Dictionary<T>::searchWithNoSorted(T& value, ColumnBase::OP_TYPE opType, vec
 
 template<class T>
 size_t Dictionary<T>::addNewElement(T& value, vector<size_t>* vecValue, bool sorted, bool bulkInsert) {
+	// bulk insert
+	if (bulkInsert) bulkVecValue->push_back(value);
+
 	if (items->empty()) {
 		items->push_back(value);
-		if (bulkInsert) bulkVecValue->push_back(value);
 		vecValue->push_back(0);
 		(*sMap)[value] = 1;
 		return 0;
@@ -276,8 +270,6 @@ size_t Dictionary<T>::addNewElement(T& value, vector<size_t>* vecValue, bool sor
 		typename vector<T>::iterator lower;
 		lower = std::lower_bound(items->begin(), items->end(), value,
 				compFunc<T>);
-		// bulk insert
-		if (bulkInsert) bulkVecValue->push_back(value);
 
 		// value existed
 		if (lower != items->end() && equalFunc(value, *lower)) {
@@ -314,6 +306,11 @@ size_t Dictionary<T>::addNewElement(T& value, vector<size_t>* vecValue, bool sor
 	}
 }
 
+template<class T>
+void Dictionary<T>::sort() {
+	std::sort(items->begin(), items->end(), compFunc<T>);
+}
+
 template<>
 void Dictionary<string>::buildInvertedIndex() {
 	// make an unordered_map of words from all items
@@ -330,6 +327,8 @@ void Dictionary<string>::buildInvertedIndex() {
 			string word = words[j];
 			// by pass if work length < 4
 			if (word.size() < 4) continue;
+			// just create inverted index for 'gift'
+			if (word.find("gift") == string::npos) continue;
 			Porter2Stemmer::trim(word);	// normalize word
 			Porter2Stemmer::stem(word);	// stem by porter algorithm
 			vector<size_t> locationLevel0 = mapWordsLevel0[word];

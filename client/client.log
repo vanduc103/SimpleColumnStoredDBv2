@@ -1,58 +1,50 @@
 
-[Sending]	UPDATE|2|8888
+[Sending]	UPDATE|4|3333
 [Response]
-Updated 1 row with rid = 2
+Updated 1 row with rid = 4
 
-[Sending]	SCAN|8888|o_orderkey|=
+[Sending]	UPDATE|5|3334
 [Response]
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-No result found !
-Query time: 0.000372 seconds 
+Updated 1 row with rid = 5
 
-
-[Sending]	SCAN|8888|o_orderkey|=
+[Sending]	UPDATE|42|3335
 [Response]
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-No result found !
-Query time: 0.000356 seconds 
+Updated 1 row with rid = 42
 
-
-[Sending]	UPDATE|2|8888
+[Sending]	UPDATE|76|3336
 [Response]
-Updated 1 row with rid = 2
+Updated 1 row with rid = 76
 
-[Sending]	SCAN|8888|o_orderkey|=
+[Sending]	SCAN|56789|o_totalprice|>
 [Response]
 o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "O",   181229,   "al accounts haggle bli",   
 8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.000395 seconds 
+1391554,   "O",   103741,   "ously even platelets. furiou",   
+3333,      "O",   196458,   "ing foxes after the even\, ironic foxes sleep s",   
+3334,      "O",   155349,   "never furiously even ideas. ex",   
+1410916,   "O",   80917,   "e among the carefully bold orbits. courts among the ",   
+1415524,   "O",   183795,   "y ironic grouches. slyly express pinto beans are carefully",   
+4009671,   "F",   368188,   "counts. boldly ironic packages slee",   
+2411843,   "F",   268097,   "terns about the fluffily express ideas sleep carefully unusual deposits. spe",   
+1424359,   "O",   66797,   "arefully pending accounts cajole slyly around the instructions. slyly even a",   
+Showing 10/1249095 results !
+Query time: 0.182939 seconds 
 
 
-[Sending]	SCAN|8888|o_orderkey|=
+[Sending]	SCAN|5678|o_totalprice|>|56789|o_totalprice|<
 [Response]
 o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.00037 seconds 
-
-
-[Sending]	UPDATE|2|8888
-[Response]
-Updated 1 row with rid = 2
-
-[Sending]	SCAN|8888|o_orderkey|=
-[Response]
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.000388 seconds 
-
-
-[Sending]	SCAN|8888|o_orderkey|=
-[Response]
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.000375 seconds 
+2410080,   "F",   28792,   " bold escapades according to the blithely even accounts are carefull",   
+5219,      "O",   34965,   "aggle always. foxes above the ironic deposits ",   
+3405412,   "F",   30779,   "to beans. pinto beans could cajole furiously. flu",   
+2835463,   "F",   19129,   "ar theodolites. deposits haggle furiously regular accounts. final courts after",   
+3797830,   "O",   17161,   "ffix quickly pending foxes. foxes nag: final\, express requests nag. slyly",   
+3335,      "O",   33822,   ". regular theodolites sleep after the care",   
+1472960,   "O",   17528,   " furiously after the packages. quickly even id",   
+3800352,   "O",   39159,   "uickly above the quickly ironic instructions; even requests about t",   
+3336,      "O",   37704,   "ts use slyly across the idly regular f",   
+43300,     "O",   52391,   "s. express requests are. ironic requests are carefully after th",   
+Showing 10/235398 results !
+Query time: 0.059484 seconds 
 

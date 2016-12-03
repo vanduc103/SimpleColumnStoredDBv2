@@ -90,6 +90,7 @@ Table* createTable(string createQuery) {
 		return NULL;
 	}
 	// init table
+	cout << "Table Name: " << tableName << endl;
 	vector<ColumnBase*>* columns = new vector<ColumnBase*>();
 	Table* table = new Table(columns);
 	table->setName(tableName);
@@ -109,8 +110,6 @@ Table* createTable(string createQuery) {
 		}
 		colBase->setName(name);
 		colBase->setType(type);
-		//if (name == "o_orderkey") colBase->setPrimaryKey(true);
-		//if (name == "o_comment") colBase->setCreateInvertedIndex(true);
 		columns->push_back(colBase);
 	}
 
@@ -156,7 +155,7 @@ Table* createTable(string createQuery) {
 			ColumnBase* colBase = columns->at(i);
 			if (colBase->getType() == ColumnBase::intType) {
 				int intValue = stoi(item);
-				bool sorted = true; bool bulkInsert = true;
+				bool sorted = false, bulkInsert = true;
 				// update dictionary
 				Column<int>* col = (Column<int>*) colBase;
 				col->updateDictionary(intValue, sorted, bulkInsert, csn);
@@ -164,16 +163,18 @@ Table* createTable(string createQuery) {
 			else {
 				// char or varchar type
 				boost::replace_all(item, "\"", "");
-				bool sorted = false; bool bulkInsert = true;
+				bool sorted = false, bulkInsert = false;
 				// update dictionary
 				Column<string>* col = (Column<string>*) colBase;
 				col->updateDictionary(item, sorted, bulkInsert, csn);
 			}
 		}
 		++row;
+		Util::printLoading(row);
 	}
 	infile.close();
 	// print distinct numbers
+	cout << endl;
 	for (ColumnBase* colBase : (*columns)) {
 		if (colBase->getType() == ColumnBase::intType) {
 			Column<int>* col = (Column<int>*) colBase;
