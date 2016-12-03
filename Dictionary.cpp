@@ -182,12 +182,10 @@ void Dictionary<T>::searchWithNoSorted(T& value, ColumnBase::OP_TYPE opType, vec
 				// equal
 				if (equalFunc(dictionaryValue, value)) {
 					result.push_back(i);
-				} else {
-					// return -1 to show no result
-					result.push_back(-1);
+					// return immediately because dictionary has no duplicate
+					return;
 				}
-				// return result because dictionary is no duplicate values
-				return;
+				break;
 			}
 			case ColumnBase::neOp: {
 				// not equal
