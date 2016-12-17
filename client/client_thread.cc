@@ -50,11 +50,11 @@ int main(int argc, char* argv[]) {
 	vecCommand.push_back("SCAN|9999|o_orderkey|=");
 	startNewClient(30000, vecCommand, out);*/
 	// update test
-	/*vecCommand.clear();
+	vecCommand.clear();
 	vecCommand.push_back("SCAN|1383879|o_orderkey|=");
 	vecCommand.push_back("UPDATE|1|1383879|D|56789|Le Van Duc");
 	vecCommand.push_back("SCAN|1383879|o_orderkey|=");
-	startNewClient(30000, vecCommand, out);*/
+	startNewClient(30000, vecCommand, out);
 	// garbage collection test
 	/*vecCommand.clear();
 	vecCommand.push_back("UPDATE|2|8888");
@@ -69,14 +69,14 @@ int main(int argc, char* argv[]) {
 	vecCommand1.push_back("UPDATE|3|2222");
 	startNewClient(60000, vecCommand1, out);*/
 	// scan
-	vecCommand.clear();
+	/*vecCommand.clear();
 	vecCommand.push_back("UPDATE|4|3333");
 	vecCommand.push_back("UPDATE|5|3334");
 	vecCommand.push_back("UPDATE|42|3335");
 	vecCommand.push_back("UPDATE|76|3336");
 	vecCommand.push_back("SCAN|56789|o_totalprice|>");
 	vecCommand.push_back("SCAN|5678|o_totalprice|>|56789|o_totalprice|<");
-	startNewClient(60000, vecCommand, out);
+	startNewClient(60000, vecCommand, out);*/
 
 	// loop forever
 	while(true);

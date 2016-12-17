@@ -1,140 +1,4 @@
 
-[Received]	UPDATE|2|8888
-Result:
-Updated 1 row with rid = 2
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-No result found !
-Query time: 0.034339 seconds 
-
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-No result found !
-Query time: 0.034642 seconds 
-
-
-[Received]	UPDATE|2|8888
-Result:
-Updated 1 row with rid = 2
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-No result found !
-Query time: 0.034645 seconds 
-
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-No result found !
-Query time: 0.034505 seconds 
-
-
-[Received]	UPDATE|2|8888
-Result:
-Updated 1 row with rid = 2
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.034641 seconds 
-
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.034295 seconds 
-
-
-[Received]	UPDATE|2|8888
-Result:
-Updated 1 row with rid = 2
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.034982 seconds 
-
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.034668 seconds 
-
-
-[Received]	UPDATE|2|8888
-Result:
-Updated 1 row with rid = 2
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.035306 seconds 
-
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.034456 seconds 
-
-
-[Received]	UPDATE|2|8888
-Result:
-Updated 1 row with rid = 2
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.035945 seconds 
-
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.035038 seconds 
-
-
-[Received]	UPDATE|2|8888
-Result:
-Updated 1 row with rid = 2
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.035041 seconds 
-
-
-[Received]	SCAN|8888|o_orderkey|=
-Result:
-o_orderkey, o_orderstatus, o_totalprice, o_comment, 
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
-Showing 1/1 results !
-Query time: 0.034449 seconds 
-
-
 [Received]	UPDATE|4|3333
 Result:
 Updated 1 row with rid = 4
@@ -155,7 +19,7 @@ Updated 1 row with rid = 76
 Result:
 o_orderkey, o_orderstatus, o_totalprice, o_comment, 
 1383879,   "O",   181229,   "al accounts haggle bli",   
-8888,      "O",   276518,   "riously. close\, even requests across the blithely r",   
+1384544,   "O",   276518,   "riously. close\, even requests across the blithely r",   
 1391554,   "O",   103741,   "ously even platelets. furiou",   
 3333,      "O",   196458,   "ing foxes after the even\, ironic foxes sleep s",   
 3334,      "O",   155349,   "never furiously even ideas. ex",   
@@ -165,7 +29,7 @@ o_orderkey, o_orderstatus, o_totalprice, o_comment,
 2411843,   "F",   268097,   "terns about the fluffily express ideas sleep carefully unusual deposits. spe",   
 1424359,   "O",   66797,   "arefully pending accounts cajole slyly around the instructions. slyly even a",   
 Showing 10/1249095 results !
-Query time: 0.182939 seconds 
+Query time: 0.073264 seconds 
 
 
 [Received]	SCAN|5678|o_totalprice|>|56789|o_totalprice|<
@@ -182,5 +46,284 @@ o_orderkey, o_orderstatus, o_totalprice, o_comment,
 3336,      "O",   37704,   "ts use slyly across the idly regular f",   
 43300,     "O",   52391,   "s. express requests are. ironic requests are carefully after th",   
 Showing 10/235398 results !
-Query time: 0.059484 seconds 
+Query time: 0.072929 seconds 
+
+
+[Received]	SCAN|9999|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+No result found !
+Query time: 0.047456 seconds 
+
+
+[Received]	INSERT|9999|D|56789|Le Van Duc
+Result:
+INSERTED 1 row ! Number of rows is: 1500001
+
+[Received]	SCAN|9999|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+9999,      "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.047371 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "O",   181229,   "al accounts haggle bli",   
+Showing 1/1 results !
+Query time: 0.07994 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.07327 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.054057 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.053223 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.054907 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.053631 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.054097 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.056714 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.054451 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.053222 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.055934 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.053699 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.053734 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.063236 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.073523 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.072901 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.054497 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.053912 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.053962 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.05323 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.053514 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.056789 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.055879 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.059354 seconds 
+
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.053947 seconds 
+
+
+[Received]	UPDATE|1|1383879|D|56789|Le Van Duc
+Result:
+Updated 1 row with rid = 1
+
+[Received]	SCAN|1383879|o_orderkey|=
+Result:
+o_orderkey, o_orderstatus, o_totalprice, o_comment, 
+1383879,   "D",   56789,   "Le Van Duc",   
+Showing 1/1 results !
+Query time: 0.052959 seconds 
 
