@@ -227,8 +227,8 @@ string updateCommand(ServerSocket* client, Table* table, Transaction* transactio
 			if (col->numOfRows() <= rid) {
 				return "ERROR: row id excess number of rows !";
 			}
-			//cout << "csn = " << col->getCSN(rid) << endl;
-			//cout << "startTs = " << startTs << endl;
+			cout << "csn = " << col->getCSN(rid) << endl;
+			cout << "startTs = " << startTs << endl;
 			// check column's CSN with tx start time stamp
 			if (col->getCSN(rid) <= startTs)
 				col->addVersionVecValue(o_orderkey, startTs, rid);

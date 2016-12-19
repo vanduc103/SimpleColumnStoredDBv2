@@ -54,7 +54,9 @@ int main(int argc, char* argv[]) {
 	garbage->setTransaction(transaction);
 	garbage->setTable(ordersTable);
 	// run each 1000 ms
-	garbage->start(10000);
+	garbage->start(1000);
+	// restart waiting transaction as thread
+	restartWaitingTransaction(10000, transaction, ordersTable, garbage);
 
     try {
         // Create the Socket
@@ -66,8 +68,6 @@ int main(int argc, char* argv[]) {
         while(true) {
             ServerSocket client;
             server.accept(client);
-            // restart waiting transaction as thread
-			restartWaitingTransaction(10000, transaction, ordersTable, garbage);
 
             try {
                 while(true) {
